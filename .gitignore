@@ -1,0 +1,12 @@
+pom.xml
+*jar
+/lib/
+/classes/
+/target
+/checkouts
+/logs
+.lein-deps-sum
+.lein-failures
+.ritz-exception-filters
+*.bin
+*.tar.gz
