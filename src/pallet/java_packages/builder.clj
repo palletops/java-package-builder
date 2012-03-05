@@ -30,9 +30,17 @@
         (do
           (cd ~dir)
           (git pull)
-          (git checkout )
-          (cd ..))
-        (git clone ~clone-url ~dir)))
+          (chain-or
+           (git checkout ~(format "v6.%s-%s" version release))
+           (exit 1))
+          (cd -))
+        (do
+          (git clone ~clone-url ~dir)
+          (cd ~dir)
+          (chain-or
+           (git checkout ~(format "v6.%s-%s" version release))
+           (exit 1))
+          (cd -))))
      (remote-file
       (format "%s/jdk-6u%s-linux-i586.bin" dir version)
       :local-file (format "jdk-6u%s-linux-i586.bin" version))
