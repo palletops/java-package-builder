@@ -7,7 +7,7 @@ A project to build sun java6 debs.
 * `lein plugin install org.cloudhoist/pallet-lein 0.4.2-SNAPSHOT`
 * `lein pallet add-service vmfest`
 * `lein pallet -P vmfest add-vmfest-image https://s3.amazonaws.com/vmfest-images/debian-6.0.2.1-64bit-v0.3.vdi.gz`
-* `git clone git://github.com/pallet/java-package-builder.git`
+* `git clone git://github.com/palletops/java-package-builder.git`
 * `cd java-package-builder`
 * Download jdk-6u30-linux-i586.bin and jdk-6u30-linux-x64.bin from Oracle into
   the java-package-builder directory
