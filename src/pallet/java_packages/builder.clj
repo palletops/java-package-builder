@@ -5,12 +5,11 @@
    [pallet.action :only [as-clj-action]]
    [pallet.action.exec-script :only [exec-checked-script]]
    [pallet.action.remote-file :only [remote-file with-remote-file]]
+   [pallet.environment :only [get-for]]
    [pallet.crate.git :only [git]]
    [pallet.crate.package-builder :only [deb-package-setup deb-build]]))
 
 (def clone-url "git://github.com/rraptorr/sun-java6.git")
-(def version 30)
-(def release 3)
 
 (defn builder
   [session]
@@ -21,7 +20,10 @@
 
 (defn build-deb
   [session]
-  (let [dir (format "sun-java6-6.%s" version)]
+  (let [dir (format "sun-java6-6.%s" version)
+        env (get-for session :sun-java6)
+        version (:version env 31)
+        release (:release env 1)]
     (->
      session
      (exec-checked-script
