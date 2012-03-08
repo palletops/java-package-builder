@@ -15,8 +15,8 @@
                               (assoc :environment
                                 (merge
                                  (-> request :project :environment)
-                                 :sun-java6 {:version version
-                                             :release release}))))]
+                                 {:sun-java6 {:version version
+                                              :release release}}))))]
     (apply converge {pkgr-group 1}
            :phase [:configure :package-java]
            converge-args)

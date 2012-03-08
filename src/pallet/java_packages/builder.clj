@@ -20,10 +20,10 @@
 
 (defn build-deb
   [session]
-  (let [dir (format "sun-java6-6.%s" version)
-        env (get-for session :sun-java6)
+  (let [env (get-for session :sun-java6)
         version (:version env 31)
-        release (:release env 1)]
+        release (:release env 1)
+        dir (format "sun-java6-6.%s" version)]
     (->
      session
      (exec-checked-script
