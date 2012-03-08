@@ -10,4 +10,6 @@
                  [ch.qos.logback/logback-classic "1.0.0"]]
   :dev-dependencies [[org.cloudhoist/pallet-lein "0.4.2-SNAPSHOT"]]
   :repositories {"sonatype"
-                 "https://oss.sonatype.org/content/repositories/releases/"})
+                 "https://oss.sonatype.org/content/repositories/releases/"
+                 "sonatype-snapshots"
+                 "https://oss.sonatype.org/content/repositories/snapshots/"})
