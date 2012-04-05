@@ -20,10 +20,11 @@
 
 (defn build-deb
   [session]
-  (let [env (get-for session :sun-java6)
+  (let [env (get-for session [:sun-java6])
         version (:version env 31)
         release (:release env 1)
-        dir (format "sun-java6-6.%s" version)]
+        dir (format "sun-java6-6.%s" version)
+        tarfile (format "sun-java6-debs-%s.tar.gz" version)]
     (->
      session
      (exec-checked-script
@@ -51,12 +52,12 @@
       :local-file (format "jdk-6u%s-linux-x64.bin" version))
      (deb-build :dir dir :binary-only true)
      (exec-checked-script
-      "build sun-java6-debs.tar.gz"
-      (tar cvfz "sun-java6-debs.tar.gz" "sun-java6*.deb"))
+      (str "build " tarfile)
+      (tar cvfz ~tarfile "sun-java6*.deb"))
      (with-remote-file
        (as-clj-action
         (fn [session local-path]
-          (io/copy local-path (io/file "sun-java6-debs.tar.gz"))
+          (io/copy local-path (io/file tarfile))
           session)
         [session local-path])
-       "sun-java6-debs.tar.gz"))))
+       tarfile))))

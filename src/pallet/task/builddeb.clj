@@ -6,7 +6,9 @@
 
 
 (defn builddeb
-  "Build RPMS"
+  "Build sun-java6 debs. You can specify the java build version (the number
+  after the u) and the patch level (e.g 1) for the tag to use rraptorr's
+  sun-java6 repo."
   [request & [version & [release & _]]]
   (let [converge-args (apply concat
                              (->
@@ -15,9 +17,9 @@
                               (assoc :environment
                                 (merge
                                  (-> request :project :environment)
-                                 {:sun-java6 {:version version
-                                              :release release}}))))]
-    (apply converge {pkgr-group 1}
+                                 {:sun-java6 {:version (or version 31)
+                                              :release (or release 1)}}))))]
+    (apply converge {(pkgr-group) 1}
            :phase [:configure :package-java]
            converge-args)
-    (apply converge {pkgr-group 0} converge-args)))
+    (apply converge {(pkgr-group) 0} converge-args)))

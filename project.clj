@@ -8,7 +8,9 @@
                  [org.slf4j/slf4j-api "1.6.1"]
                  [ch.qos.logback/logback-core "1.0.0"]
                  [ch.qos.logback/logback-classic "1.0.0"]]
-  :dev-dependencies [[org.cloudhoist/pallet-lein "0.4.2-SNAPSHOT"]]
+  :dev-dependencies [[org.cloudhoist/pallet-lein "0.4.2"]]
+  :profiles {:dev
+             {:dependencies [[org.cloudhoist/pallet-lein "0.4.2"]]}}
   :repositories {"sonatype"
                  "https://oss.sonatype.org/content/repositories/releases/"
                  "sonatype-snapshots"
